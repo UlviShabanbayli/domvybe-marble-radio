@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#151517">
+<title>Glasshouse · Pricing</title>
+<meta name="description" content="Pick a plan. Let it roll. A plan picker of glass marbles: the chosen marble rolls into a polished stone seat.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/marble.css">
+<script>
+  // storage: versioned keys only; anything older is wiped. The page's theme is its own (dark) and never follows the OS.
+  try {
+    for (let i = localStorage.length - 1; i >= 0; i--) { const k = localStorage.key(i); if (k && /^dv89/.test(k) && k !== 'dv89.plan') localStorage.removeItem(k); }
+  } catch (e) {}
+  if (/[?&]nofx\b/.test(location.search)) document.documentElement.classList.add('no-fx');
+</script>
+</head>
+<body>
+<a class="skip" href="#plans-title">Skip to plans</a>
+<canvas class="fx" id="fx" aria-hidden="true"></canvas>
+<div class="css-stage" id="css-stage" aria-hidden="true">
+  <div class="cs-slab" id="cs-slab"></div><div class="cs-front" id="cs-front"></div>
+  <i class="cs-seat"></i><i class="cs-seat"></i><i class="cs-seat"></i>
+  <i class="cs-marble m0"></i><i class="cs-marble m1"></i><i class="cs-marble m2"></i>
+</div>
+
+<header class="top">
+  <a class="logo" href="#" aria-label="Glasshouse home"><i aria-hidden="true"></i>Glasshouse</a>
+  <nav aria-label="Main">
+    <a href="#">Product</a><a href="#" aria-current="page">Pricing</a><a href="#">Customers</a><a href="#">Docs</a>
+  </nav>
+  <a class="signin" href="#">Sign in</a>
+</header>
+
+<main id="main">
+  <section class="hero" id="hero">
+    <p class="k" id="plans-title">Pricing · billed monthly</p>
+    <h1>Pick a plan. <em>Let it roll.</em></h1>
+    <p class="sub">Every plan includes unlimited boards and guests. Switch any time.</p>
+  </section>
+
+  <div class="plans" id="plans" role="radiogroup" aria-labelledby="plans-title" aria-describedby="plans-hint">
+    <button class="opt" role="radio" aria-checked="false" data-i="0" id="opt-0"><b>Solo</b><span>$9 · 1 seat</span></button>
+    <button class="opt" role="radio" aria-checked="true" data-i="1" id="opt-1"><b>Studio</b><span>$24 · up to 10 seats</span></button>
+    <button class="opt" role="radio" aria-checked="false" data-i="2" id="opt-2"><b>Team</b><span>$59 · unlimited seats</span></button>
+  </div>
+  <p class="sr" id="plans-hint">Use the arrow keys to choose a plan. The chosen marble rolls into the seat.</p>
+  <div class="hits" id="hits" aria-hidden="true"><i data-i="0"></i><i data-i="1"></i><i data-i="2"></i></div>
+
+  <div class="foot" id="foot">
+    <p class="pr" id="pr" aria-live="polite"><span class="num" id="num">$24</span><small>/ month</small></p>
+    <button class="btn" id="go" type="button"><span class="spin" aria-hidden="true"></span><svg class="tick" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.6 3.4 7.4-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lbl" id="go-lbl">Continue with Studio</span></button>
+    <button class="undo" id="undo" type="button" hidden>Change plan</button>
+  </div>
+  <p class="status" id="status" role="status" aria-live="polite"></p>
+</main>
+
+<div class="cap" id="cap"><b>24 · Marble radio</b><span>A plan picker of glass marbles</span><i>The chosen marble rolls into the polished seat.</i></div>
+<div class="brandmark">Code with Ulvi</div>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
